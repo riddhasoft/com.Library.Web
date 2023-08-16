@@ -13,6 +13,7 @@ namespace com.Library.Web.Data
 
         public DbSet<BookModel> Book { get; set; }
         public DbSet<BookIdentificationModel> BookIdentification { get; set; }
+        public DbSet<StudentModel> Student { get; set; }
 
     }
 }

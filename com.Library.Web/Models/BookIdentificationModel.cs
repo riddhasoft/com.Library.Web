@@ -14,6 +14,7 @@ namespace com.Library.Web.Models
         public string SN { get; set; }
         [Column("STATUS")]
         public BookStatus Status { get; set; }
+        public virtual BookModel Book { get; set; }
     }
 
 
