@@ -1,5 +1,7 @@
-﻿using com.Library.Web.Models;
+﻿using com.Library.Web.Controllers.ViewModel;
+using com.Library.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace com.Library.Web.Controllers
@@ -27,6 +29,23 @@ namespace com.Library.Web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult Signup()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Signup(SignupViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.User.Add(model);
+                _context.SaveChanges();
+
+                return Redirect("/Users/Login");
+            }
+            return View();
         }
     }
 }

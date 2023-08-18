@@ -11,8 +11,15 @@ namespace com.Library.Web.Models
         [Column("BOOK_IDENTIFICATION_ID")]
 
         public int BookIdentificationId { get; set; }
+        /// <summary>
+        /// Logged in User
+        /// Add this id in identity after login
+        /// </summary>
         [Column("USER_ID")]
         public int UserId { get; set; }
+        /// <summary>
+        /// member id (student)
+        /// </summary>
         [Column("ISSUED_TO")]
         public int IssuedTo { get; set; }
         [Column("TRAN_DATE")]
