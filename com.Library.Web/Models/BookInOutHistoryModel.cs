@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace com.Library.Web.Models
 {
+    [Table("BOOK_IN_OUT_HISTORY")]
     public class BookInOutHistoryModel
     {
         [Key, Column("ID")]
@@ -25,6 +26,6 @@ namespace com.Library.Web.Models
         Return,
         Issue,
         Renew
-        
+
     }
 }

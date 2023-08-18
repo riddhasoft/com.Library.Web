@@ -7,5 +7,9 @@ namespace com.Library.Web.Services
 
         List<BookIdentificationModel> AddNewBook(BookModel book, int NoOfBook);
 
+        BookInOutHistoryModel IssueBook(BookInOutHistoryModel model);
+        BookInOutHistoryModel ReturnBook(BookInOutHistoryModel model);
+        BookInOutHistoryModel RenewBook(BookInOutHistoryModel model);
+        List<BookInOutHistoryModel> GetBookHistory(int Id);
     }
 }

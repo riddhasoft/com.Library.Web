@@ -59,6 +59,11 @@ namespace com.Library.Web.Services
             };
         }
 
+        public List<BookInOutHistoryModel> GetBookHistory(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public ServiceResult<BookModel> GetById(int id)
         {
             BookModel model = _context.Book.Find(id);
@@ -81,6 +86,22 @@ namespace com.Library.Web.Services
             };
         }
 
+        public BookInOutHistoryModel IssueBook(BookInOutHistoryModel model)
+        {
+            //add history
+
+            model.BookInOut = BookInOut.Issue;
+            _context.BookInOutHistory.Add(model);
+
+            //update book status
+            var bookIdentification = _context.BookIdentification.Find(model.BookIdentificationId);
+            bookIdentification.Status = BookStatus.WithMember;
+            _context.BookIdentification.Update(bookIdentification);
+
+            _context.SaveChanges();
+            return model;
+        }
+
         public ServiceResult<List<BookModel>> List()
         {
 
@@ -89,6 +110,41 @@ namespace com.Library.Web.Services
                 Data = _context.Book.ToList(),
 
             };
+        }
+
+        public BookInOutHistoryModel RenewBook(BookInOutHistoryModel model)
+        {
+            //add history
+
+            model.BookInOut = BookInOut.Renew;
+            _context.BookInOutHistory.Add(model);
+
+            //update book status
+            var bookIdentification = _context.BookIdentification.Find(model.BookIdentificationId);
+            bookIdentification.Status = BookStatus.WithMember;
+            _context.BookIdentification.Update(bookIdentification);
+
+            _context.SaveChanges();
+            return model;
+
+
+
+        }
+
+        public BookInOutHistoryModel ReturnBook(BookInOutHistoryModel model)
+        {
+            //add history
+
+            model.BookInOut = BookInOut.Return;
+            _context.BookInOutHistory.Add(model);
+
+            //update book status
+            var bookIdentification = _context.BookIdentification.Find(model.BookIdentificationId);
+            bookIdentification.Status = BookStatus.InLibrary;
+            _context.BookIdentification.Update(bookIdentification);
+
+            _context.SaveChanges();
+            return model;
         }
 
         public ServiceResult<int> Update(BookModel model)
